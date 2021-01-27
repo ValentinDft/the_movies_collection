@@ -1,9 +1,9 @@
 @import 'antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap');
 
 body{
   background-color: #485460;
-  font-family: 'Coda Caption', sans-serif;
 }
 
 .menu-bar {
@@ -45,4 +45,17 @@ body{
   background: linear-gradient(to bottom, #e8edec, #d2d1d3);
   box-shadow: 0px 3px 20px 0px black;
   transform: scale(1.2);
+}
+
+.card-portfolio{
+  background-color: white;
+  color: black;
+  font-family: 'PT Sans Caption', sans-serif;
+  border-radius: 40px;
+  padding: 25px 10px;
+  box-shadow: 0 0px 80px rgba(0, 0, 0, 0.2), 0px 0px 120px rgba(0, 0, 0, 0.2);
+}
+
+.card-portfolio:hover{
+  box-shadow: 0 20px 120px rgba(0, 0, 0, 0.2), 0px 0px 150px rgba(0, 0, 0, 0.2);
 }

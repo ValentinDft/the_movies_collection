@@ -1,24 +1,27 @@
 import React from "react";
+import { Col, Row } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 function cardMovie() {
     return(
         
-        <Col xs="12" lg="6" xl="4">
-            <Card className="cardMovies">
-                <CardImg src={props.moviesImg} />
-                <CardBody>
-                    <CardTitle>Like <FontAwesomeIcon icon={faHeart} className="curseur_pointeur"/></CardTitle>
-                    <CardTitle>Nombres de vues <FontAwesomeIcon icon={faVideo} className="curseur_pointeur"/></CardTitle>
-                    <CardTitle>Mon avis <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> <button className="btn btn-secondary">-</button> <button className="btn btn-secondary">+</button></CardTitle>
-                    <CardTitle>Moyenne <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> ({props.moviesVote})</CardTitle>
-                    <CardText>{props.moviesName}</CardText>
-                    <CardText>{props.moviesDesc}</CardText>
-                </CardBody>
-            </Card>
+        <Col xs={18} md={11} lg={10} xl={6} className="card-portfolio">
+            {/* <img src={logoWeWorkHome} style={{width: "85%", borderRadius: "10px"}} className="img-portfolio"></img> */}
+            <div>Like <FontAwesomeIcon icon={faHeart} style={{cursor: "pointer"}}/></div>
+            <div>Nombres de vues <FontAwesomeIcon icon={faVideo} style={{cursor: "pointer"}}/></div>
+            <div>Mon avis <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> <button>-</button> <button>+</button></div>
+            <div>Moyenne <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> 1-2-3-4-5</div>
+            <h2 style={{marginTop: "15px", color: "white"}}>Star Wars</h2>
+            <h3 style={{fontSize: "15px", marginTop: "15px", padding:"0px 20px", textAlign: "justify"}}>
+                Développeur front-end, projet avec trois développeurs. JobBoard spécialisé dans le télétravail, recherche d'emploi pour les candidats et poste d'annonce pour les recruteurs.
+            </h3>
+           
         </Col>
-            
-    
+        
     )
 }
 
-export default cardMovie;
+export default cardMovie;   
