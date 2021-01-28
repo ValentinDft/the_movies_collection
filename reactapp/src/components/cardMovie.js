@@ -10,11 +10,9 @@ function cardMovie() {
         
         <Col xs={18} md={11} lg={10} xl={6} className="card-portfolio">
             {/* <img src={logoWeWorkHome} style={{width: "85%", borderRadius: "10px"}} className="img-portfolio"></img> */}
-            <div>Like <FontAwesomeIcon icon={faHeart} style={{cursor: "pointer"}}/></div>
-            <div>Nombres de vues <FontAwesomeIcon icon={faVideo} style={{cursor: "pointer"}}/></div>
-            <div>Mon avis <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> <button>-</button> <button>+</button></div>
+            
             <div>Moyenne <FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /> 1-2-3-4-5</div>
-            <h2 style={{marginTop: "15px", color: "white"}}>Star Wars</h2>
+            <h2 style={{marginTop: "15px", textAlign: "center"}}>Star Wars</h2>
             <h3 style={{fontSize: "15px", marginTop: "15px", padding:"0px 20px", textAlign: "justify"}}>
                 Développeur front-end, projet avec trois développeurs. JobBoard spécialisé dans le télétravail, recherche d'emploi pour les candidats et poste d'annonce pour les recruteurs.
             </h3>
