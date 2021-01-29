@@ -1,13 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CardMovie from './components/cardMovie';
 import './App.css';
 import { Col, Row } from 'antd';
 
 function App() {
-  let card;
-  for (let i = 0; i < 5; i++) {
-    card = <CardMovie/>
-  }
+  
+  const [movieData, setMovieData] = useState([]);
+
+  useEffect( () => {
+    
+    async function loadMovies() {
+      let requete = await fetch("/movies");
+      let response = await requete.json();
+      setMovieData(response.resultatRequete.results);
+    }
+    loadMovies()
+  }, []);
+
+  console.log(movieData);
+
+  let movieList = movieData.map((movie, i) => {
+    return(
+      <CardMovie movieName={movie.title} movieDesc={movie.overview} movieDate={movie.release_date} movieNote={movie.vote_average}/>
+    )
+  })
 
   return (
     <div style={{marginTop: "2%"}}>
@@ -24,7 +40,7 @@ function App() {
         </Col>
       </Row>
       <Row style={{marginLeft: "10%", marginRight: "10%", marginTop:"8%"}}>
-        {card}
+        {movieList}
       </Row>
     </div>
   );
