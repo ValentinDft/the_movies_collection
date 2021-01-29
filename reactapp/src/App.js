@@ -38,13 +38,15 @@ function App() {
         </Col>
         <Col span={10} style={{display: "flex", justifyContent: "center"}}>
           <ul className="menu-bar">
-            <li>Home</li>
-            <li>Movies</li>
-            <li>TV Show</li>
+            <li>Films</li>
+            <li>Séries</li>
           </ul>
         </Col>
       </Row>
-      <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"8%", display: "flex", justifyContent: "space-between"}}>
+      <Row style={{marginTop:"5%", display: "flex", justifyContent: "center"}}>
+        <h1>Films Populaires</h1>
+      </Row>
+      <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"5%", display: "flex", justifyContent: "space-between"}}>
         {movieList}
       </Row>
     </div>
