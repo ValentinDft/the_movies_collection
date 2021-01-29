@@ -20,8 +20,13 @@ function App() {
   console.log(movieData);
 
   let movieList = movieData.map((movie, i) => {
+    let urlImage = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
+    let desc = movie.overview;
+    if (desc.length > 250) {
+        desc = desc.slice(0,250)+"...";
+    }
     return(
-      <CardMovie movieName={movie.title} movieDesc={movie.overview} movieDate={movie.release_date} movieNote={movie.vote_average}/>
+      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage}/>
     )
   })
 
@@ -39,7 +44,7 @@ function App() {
           </ul>
         </Col>
       </Row>
-      <Row style={{marginLeft: "10%", marginRight: "10%", marginTop:"8%"}}>
+      <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"8%", display: "flex", justifyContent: "space-between"}}>
         {movieList}
       </Row>
     </div>
