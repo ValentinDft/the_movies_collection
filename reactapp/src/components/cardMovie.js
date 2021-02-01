@@ -1,9 +1,5 @@
 import React from "react";
 import { Col, Row } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 function cardMovie(props) {
     return(
