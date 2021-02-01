@@ -12,7 +12,7 @@ function nav() {
         <Col span={10} style={{display: "flex", justifyContent: "center"}}>
           <ul className="menu-bar">
             <Link to="/"><li>Films</li> </Link>
-            <Link to="/"><li>Séries</li> </Link>
+            <Link to="/popular-tv"><li>Séries</li> </Link>
           </ul>
         </Col>
       </Row>
