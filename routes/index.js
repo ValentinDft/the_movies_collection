@@ -3,7 +3,7 @@ var express = require('express');
 var request = require("sync-request");
 var router = express.Router();
 
-var REQUEST_MOVIE = process.env.REQUEST_MOVIE;
+var KEY_MOVIEDB = process.env.KEY_MOVIEDB;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/movies', function(req, res, next) {
   
-  let requete = request("GET", REQUEST_MOVIE);
+  let requete = request("GET", "https://api.themoviedb.org/3/movie/popular?api_key=" + KEY_MOVIEDB + "&language=fr&sort_by=popularity.desc");
   let resultatRequete = JSON.parse(requete.getBody());
  
   res.json( { resultatRequete });
