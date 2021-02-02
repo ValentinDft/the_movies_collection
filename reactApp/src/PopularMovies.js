@@ -13,6 +13,7 @@ function PopularMovies() {
     async function loadMovies() {
       let requete = await fetch("/movies");
       let response = await requete.json();
+      console.log(response);
       setMovieData(response.resultatRequete.results);
     }
     loadMovies()
