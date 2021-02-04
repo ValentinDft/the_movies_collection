@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
+import CarouselMovie from './components/Carousel';
 import './App.css';
-import { Row } from 'antd';
+import { Col, Row, Carousel } from 'antd';
 
 function PopularTV() {
   
@@ -17,7 +18,8 @@ function PopularTV() {
     }
     loadMovies()
   }, []);
-  console.log(serieData);
+
+  let serieCarousel = [...serieData];
 
   let serieList = serieData.map((serie, i) => {
     let urlImage = 'https://image.tmdb.org/t/p/w500/'+ serie.backdrop_path
@@ -30,11 +32,27 @@ function PopularTV() {
     )
   })
 
+  serieCarousel.splice(5, 16);
+  let serieListCarousel = serieCarousel.map((movie, i) => {
+    console.log("coucou");
+    let backgroundImgCarousel = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
+    return(
+      <CarouselMovie movieName={movie.name} movieImg={backgroundImgCarousel}/>
+    )
+  })
+
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
-      <Row style={{marginTop:"5%", display: "flex", justifyContent: "center"}}>
-        <h1>Séries TV Populaires</h1>
+      <Row style={{marginTop:"3%"}}>
+        <Col span={24}>
+          <Carousel autoplay>
+            {serieListCarousel}
+          </Carousel>
+        </Col>
+        <Col span={24}>
+          <h1 style={{textAlign: "center", marginTop:"20px", color:"white"}}>Séries TV Populaires</h1>
+        </Col>
       </Row>
       <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"5%", display: "flex", justifyContent: "space-between"}}>
         {serieList}

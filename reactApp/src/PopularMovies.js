@@ -8,7 +8,6 @@ import { Col, Row, Carousel } from 'antd';
 function PopularMovies() {
   
   const [movieData, setMovieData] = useState([]);
-  const [movieCarousel, setMovieCarousel] = useState([]);
 
   useEffect( () => {
     
@@ -16,12 +15,11 @@ function PopularMovies() {
       let requete = await fetch("/movies");
       let response = await requete.json();
       setMovieData(response.resultatRequete.results);
-      setMovieCarousel([...movieData]);
-      
     }
     loadMovies()
   }, []);
-  
+
+  let movieCarousel = [...movieData];
 
   let movieList = movieData.map((movie, i) => {
     let urlImage = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
@@ -33,8 +31,9 @@ function PopularMovies() {
       <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage}/>
     )
   })
-  
+
   movieCarousel.splice(5, 16);
+
   let movieListCarousel = movieCarousel.map((movie, i) => {
     console.log("coucou");
     let backgroundImgCarousel = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
@@ -42,8 +41,6 @@ function PopularMovies() {
       <CarouselMovie movieName={movie.title} movieImg={backgroundImgCarousel}/>
     )
   })
-  console.log('data',movieData);
-  console.log('carousel',movieCarousel);
 
   return (
     <div style={{marginTop: "2%"}}>

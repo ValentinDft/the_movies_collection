@@ -61,12 +61,9 @@ body{
   box-shadow: 0 20px 120px rgba(0, 0, 0, 0.2), 0px 0px 150px rgba(0, 0, 0, 0.2);
 }
 
-.movie-carousel{
-  height: 350px;
-  color: white;
-  line-height: 600px;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 90% 100%;
+.img-carousel{
+  width: 82%;
+  height: 350px; 
+  border-radius: 50px; 
+  box-shadow: 0 0px 60px rgba(0, 0, 0, 0.2), 0px 0px 100px rgba(0, 0, 0, 0.2);
 }
