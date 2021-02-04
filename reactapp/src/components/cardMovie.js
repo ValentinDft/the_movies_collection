@@ -1,8 +1,9 @@
 import React from "react";
-import { Col } from 'antd';
+import { Col, Row } from 'antd';
 
 
 function cardMovie(props) {
+    let lienMovieDb = "https://www.themoviedb.org/tv/" + props.movieId + "-" + props.movieName + "?language=fr";
     return(
          
         <Col xs={18} md={11} lg={10} xl={7} className="card-portfolio">
@@ -11,9 +12,14 @@ function cardMovie(props) {
             <h3 style={{fontSize: "15px", marginTop: "15px", padding:"0px 20px", textAlign: "justify", marginBottom: "50px"}}>
                 {props.movieDesc}
             </h3>
-            <h4 style={{position: "absolute", top: "90%"}}>Moyenne : {props.movieNote}/10</h4>
-            <h4 style={{position: "absolute", top: "90%", right: "10px"}}>Date de sortie : {props.movieDate}</h4>
-        
+            <Row>
+                <h4 style={{position: "absolute", top: "90%"}}>Moyenne : {props.movieNote}/10</h4>
+                <h4 style={{position: "absolute", top: "90%", right: "10px"}}>Date de sortie : {props.movieDate}</h4>
+            </Row>
+            <Row>
+                <a href={lienMovieDb} target="_blanck"><button>Voir</button></a> 
+            </Row>
+            
         </Col> 
     )
 }

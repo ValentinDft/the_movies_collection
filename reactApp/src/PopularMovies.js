@@ -29,7 +29,7 @@ function PopularMovies() {
         desc = desc.slice(0,250)+"...";
     }
     return(
-      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage}/>
+      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage} movieId={movie.id}/>
     )
   })
 

@@ -29,7 +29,7 @@ function PopularTV() {
         desc = desc.slice(0,250)+"...";
     }
     return(
-      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieImg={urlImage}/>
+      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieImg={urlImage} movieId={serie.id}/>
     )
   })
 
