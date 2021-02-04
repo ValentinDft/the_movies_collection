@@ -4,6 +4,7 @@ import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
 import './App.css';
 import { Col, Row, Carousel } from 'antd';
+import {Animated} from "react-animated-css";
 
 function PopularMovies() {
   
@@ -48,14 +49,14 @@ function PopularMovies() {
       
       <Row style={{marginTop:"3%"}}>
         <Col span={24}>
-          <Carousel autoplay>
-            
-            {movieListCarousel}
-            
-          </Carousel>
+          <Animated animationIn="slideInUp">
+            <Carousel autoplay>
+              {movieListCarousel}
+            </Carousel>
+          </Animated>
         </Col>
         <Col span={24}>
-          <h1 style={{textAlign: "center", marginTop:"20px", color:"white"}}>Films Populaires</h1>
+            <h1 style={{textAlign: "center", marginTop:"40px", color:"white"}}>Films Populaires</h1>
         </Col>
       </Row>
       <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"5%", display: "flex", justifyContent: "space-between"}}>
