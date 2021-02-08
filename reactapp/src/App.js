@@ -4,10 +4,11 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import PopularMovies from './PopularMovies';
 import PopularTV from './PopularTV';
 
-import onMovie from "./reducer/page.reducer"
+import onMovie from "./reducer/onMovie.reducer"
+import onSerie from "./reducer/onSerie.reducer"
 import {Provider} from "react-redux";
 import {createStore, combineReducers} from "redux";
-const store = createStore(combineReducers({onMovie}));
+const store = createStore(combineReducers({onMovie, onSerie}));
 
 function App() {
   return (
