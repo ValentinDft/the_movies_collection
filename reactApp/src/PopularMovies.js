@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
@@ -6,20 +7,24 @@ import './App.css';
 import { Col, Row, Carousel } from 'antd';
 import {Animated} from "react-animated-css";
 
-function PopularMovies() {
+function PopularMovies(props) {
   
+  const [onPageMovie, setOnPageMovie] = useState(true);
+  const [onPageSerie, setOnPageSerie] = useState(false);
   const [movieData, setMovieData] = useState([]);
 
   useEffect( () => {
     
     async function loadMovies() {
       let requete = await fetch("/movies");
+      console.log(requete);
       let response = await requete.json();
+      console.log(response);
       setMovieData(response.resultatRequete.results);
     }
     loadMovies()
   }, []);
-
+  props.onClick(onPageMovie)
   let movieCarousel = [...movieData];
 
   let movieList = movieData.map((movie, i) => {
@@ -36,7 +41,6 @@ function PopularMovies() {
   movieCarousel.splice(5, 16);
 
   let movieListCarousel = movieCarousel.map((movie, i) => {
-    console.log("coucou");
     let backgroundImgCarousel = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
     return(
       <CarouselMovie movieName={movie.title} movieImg={backgroundImgCarousel}/>
@@ -66,4 +70,12 @@ function PopularMovies() {
   );
 }
 
-export default PopularMovies;
+function mapDispatchToProps(dispatch) {
+	return {
+		onClick: function (onPageMovie) {
+			dispatch({ type: 'onMovie', onPageMovie});
+		}
+	};
+}
+
+export default connect(null, mapDispatchToProps)(PopularMovies);

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
@@ -6,9 +7,16 @@ import './App.css';
 import { Col, Row, Carousel } from 'antd';
 import {Animated} from "react-animated-css";
 
-function PopularTV() {
+function PopularTV(props) {
   
+  const [onPageMovie, setOnPageMovie] = useState(props.page);
+  const [onPageSerie, setOnPageSerie] = useState(false);
   const [serieData, setSerieDate] = useState([]);
+
+  if (onPageMovie) {
+    setOnPageMovie(false);
+    props.onClick(onPageMovie);
+  }
 
   useEffect( () => {
     
@@ -35,13 +43,12 @@ function PopularTV() {
 
   serieCarousel.splice(5, 16);
   let serieListCarousel = serieCarousel.map((movie, i) => {
-    console.log("coucou");
     let backgroundImgCarousel = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
     return(
       <CarouselMovie movieName={movie.name} movieImg={backgroundImgCarousel}/>
     )
   })
-
+  console.log(onPageMovie);
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
@@ -64,4 +71,19 @@ function PopularTV() {
   );
 }
 
-export default PopularTV;
+function mapStateToProps(state) {
+  return { page: state.onMovie }
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		onClick: function (onPageMovie) {
+			dispatch({ type: 'onMovie', onPageMovie});
+		}
+	};
+}
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(PopularTV);
