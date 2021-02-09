@@ -32,6 +32,7 @@ function PopularTV(props) {
     }
     loadMovies()
   }, []);
+  console.log(serieData);
 
   let serieCarousel = [...serieData];
 
@@ -46,7 +47,7 @@ function PopularTV(props) {
       urlMovieDB = "https://www.themoviedb.org/tv/" + serie.id + "-" + serie.name + "?language=fr"
     }
     return(
-      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieImg={urlImage} movieId={serie.id} movieUrl={urlMovieDB}/>
+      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieVote={serie.vote_count} movieImg={urlImage} movieId={serie.id} movieUrl={urlMovieDB}/>
     )
   })
 

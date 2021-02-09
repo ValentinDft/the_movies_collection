@@ -26,7 +26,6 @@ function PopularMovies(props) {
   }, []);
   props.onMovie(onPageMovie)
   props.onSerie(onPageSerie)
-  
   let movieCarousel = [...movieData];
 
   let movieList = movieData.map((movie, i) => {
@@ -40,7 +39,7 @@ function PopularMovies(props) {
       urlMovieDB = "https://www.themoviedb.org/movie/" + movie.id + "-" + movie.title + "?language=fr"
     }
     return(
-      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage} movieId={movie.id} movieUrl={urlMovieDB}/>
+      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieVote={movie.vote_count} movieImg={urlImage} movieId={movie.id} movieUrl={urlMovieDB}/>
     )
   })
 
