@@ -24,7 +24,9 @@ function PopularMovies(props) {
     }
     loadMovies()
   }, []);
-  props.onClick(onPageMovie)
+  props.onMovie(onPageMovie)
+  props.onSerie(onPageSerie)
+  
   let movieCarousel = [...movieData];
 
   let movieList = movieData.map((movie, i) => {
@@ -33,8 +35,12 @@ function PopularMovies(props) {
     if (desc.length > 250) {
         desc = desc.slice(0,250)+"...";
     }
+    let urlMovieDB;
+    if (onPageMovie) {
+      urlMovieDB = "https://www.themoviedb.org/movie/" + movie.id + "-" + movie.title + "?language=fr"
+    }
     return(
-      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage} movieId={movie.id}/>
+      <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieImg={urlImage} movieId={movie.id} movieUrl={urlMovieDB}/>
     )
   })
 
@@ -70,12 +76,20 @@ function PopularMovies(props) {
   );
 }
 
+function mapStateToProps(state) {
+  return { pageMovie: state.onMovie, pageSerie: state.onSerie }
+}
+
 function mapDispatchToProps(dispatch) {
 	return {
-		onClick: function (onPageMovie) {
-			dispatch({ type: 'onMovie', onPageMovie});
+		onMovie: function (onPageMovie) {
+			dispatch({ type: 'onMoviePage', onPageMovie});
+		},
+    onSerie: function (onPageSerie) {
+			dispatch({ type: 'onSeriePage', onPageSerie});
 		}
+    
 	};
 }
 
-export default connect(null, mapDispatchToProps)(PopularMovies);
+export default connect(mapStateToProps, mapDispatchToProps)(PopularMovies);

@@ -9,13 +9,18 @@ import {Animated} from "react-animated-css";
 
 function PopularTV(props) {
   
-  const [onPageMovie, setOnPageMovie] = useState(props.page);
-  const [onPageSerie, setOnPageSerie] = useState(false);
+  const [onPageMovie, setOnPageMovie] = useState(props.pageMovie);
+  const [onPageSerie, setOnPageSerie] = useState(props.pageSerie);
   const [serieData, setSerieDate] = useState([]);
 
   if (onPageMovie) {
     setOnPageMovie(false);
-    props.onClick(onPageMovie);
+    props.onMovie(onPageMovie);
+  }
+
+  if (!onPageSerie) {
+    setOnPageSerie(true);
+    props.onMovie(onPageSerie);
   }
 
   useEffect( () => {
@@ -36,8 +41,12 @@ function PopularTV(props) {
     if (desc.length > 250) {
         desc = desc.slice(0,250)+"...";
     }
+    let urlMovieDB;
+    if (onPageSerie) {
+      urlMovieDB = "https://www.themoviedb.org/tv/" + serie.id + "-" + serie.name + "?language=fr"
+    }
     return(
-      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieImg={urlImage} movieId={serie.id}/>
+      <CardMovie movieName={serie.name} movieDesc={desc} movieDate={serie.first_air_date} movieNote={serie.vote_average} movieImg={urlImage} movieId={serie.id} movieUrl={urlMovieDB}/>
     )
   })
 
@@ -48,7 +57,8 @@ function PopularTV(props) {
       <CarouselMovie movieName={movie.name} movieImg={backgroundImgCarousel}/>
     )
   })
-  console.log(onPageMovie);
+  console.log("onMovie tv",onPageMovie);
+  console.log("onSerie tv", onPageSerie);
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
@@ -72,13 +82,16 @@ function PopularTV(props) {
 }
 
 function mapStateToProps(state) {
-  return { page: state.onMovie }
+  return { pageMovie: state.onMovie, pageSerie: state.onSerie }
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		onClick: function (onPageMovie) {
-			dispatch({ type: 'onMovie', onPageMovie});
+		onMovie: function (onPageMovie) {
+			dispatch({ type: 'onMoviePage', onPageMovie});
+		},
+    onSerie: function (onPageSerie) {
+			dispatch({ type: 'onSerie', onPageSerie});
 		}
 	};
 }

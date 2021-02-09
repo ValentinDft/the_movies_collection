@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 
 
 function cardMovie(props) {
-    let lienMovieDb = "https://www.themoviedb.org/tv/" + props.movieId + "-" + props.movieName + "?language=fr";
+    console.log(props.movieUrl);
     return(
          
         <Col xs={18} md={11} lg={10} xl={7} className="card-portfolio">
@@ -17,7 +17,7 @@ function cardMovie(props) {
                 <h4 style={{position: "absolute", top: "90%", right: "10px"}}>Date de sortie : {props.movieDate}</h4>
             </Row>
             <Row>
-                <a href={lienMovieDb} target="_blanck"><button>Voir</button></a> 
+                <a href={props.movieUrl} target="_blanck"><button>Voir</button></a> 
             </Row>
             
         </Col> 
