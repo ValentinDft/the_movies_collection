@@ -1,6 +1,7 @@
 @import 'antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Codystar:300&display=swap');
 
 body{
   background-image: url("./img/background.jpg");
@@ -8,6 +9,25 @@ body{
 	background-position: center;
 	background-attachment: fixed;
 	background-size: cover;
+}
+
+.neons {
+  font-size: 38px;
+  font-weight: bold;
+  text-align: center;
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    color: white;
+    text-shadow: 0 0 10px #1B9CFC, 0 0 20px #1B9CFC, 0 0 30px #1B9CFC, 0 0 40px #1B9CFC, 0 0 50px #1B9CFC, 0 0 60px #1B9CFC, 0 0 70px #1B9CFC, 0 0 90px #1B9CFC;
+ }
+  to {
+    color: grey;
+    text-shadow: 0 0 20px #1B9CFC, 0 0 30px #1B9CFC, 0 0 40px #1B9CFC, 0 0 50px #1B9CFC, 0 0 60px #1B9CFC, 0 0 70px #1B9CFC, 0 0 80px #1B9CFC, 0 1 90px #1B9CFC;
+ }
 }
 
 .menu-bar {
