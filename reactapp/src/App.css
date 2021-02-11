@@ -92,6 +92,18 @@ body{
   box-shadow: 0 0px 60px rgba(0, 0, 0, 0.2), 0px 0px 100px rgba(0, 0, 0, 0.2);
 }
 
+.club
+{
+  background: #2d3436;
+  position: absolute;
+  color: white;
+  right: -10px;
+  top: 35px;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
 .btn {
   letter-spacing: 0.1em;
   cursor: pointer;
