@@ -29,13 +29,17 @@ function cardMovie(props) {
          
         <Col xs={18} md={11} lg={10} xl={7} className="card-portfolio">
             <img src={props.movieImg} style={{width: "100%" ,borderRadius: "10px"}}></img>
-            <h2 className="club">{props.movieName}</h2>
-            <h3 style={{fontSize: "15px", marginTop: "15px", padding:"0px 20px", textAlign: "justify", marginBottom: "50px"}}>
+            <h2 className="ruban-title">{props.movieName}</h2>
+            <h3 style={{fontSize: "15px", marginTop: "20px", textAlign: "justify", marginBottom: "50px", height: "100px"}}>
                 {props.movieDesc}
             </h3>
             <Row>
-                <h4>{tabStars} ({nbVote})</h4>
-                <h4>Date de sortie : {props.movieDate}</h4>
+                <Col span={24}>
+                    <h4>{tabStars} ({nbVote})</h4>
+                </Col>
+                <Col span={24} style={{marginTop: "10px"}}>
+                    <h4>Date de sortie : {props.movieDate}</h4>
+                </Col>
             </Row>
             <Row style={{marginTop:"20px"}}>
                 <Col span={24} style={{display: "flex", justifyContent: "center"}}>
