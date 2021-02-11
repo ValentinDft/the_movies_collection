@@ -7,6 +7,11 @@ function cardMovie(props) {
     let moyenne = parseInt(props.movieNote) ;
     let nbVote = parseInt(props.movieVote) ;
     let tabStars = [];
+    let nomBtn = props.movieName;
+    if (nomBtn.length > 15) {
+        nomBtn = nomBtn.slice(0,15)+"...";
+    }
+    console.log(nomBtn.length);
     for(var i=0;i<10;i++){
      
         var color = {}
@@ -32,8 +37,10 @@ function cardMovie(props) {
                 <h4>{tabStars} ({nbVote})</h4>
                 <h4>Date de sortie : {props.movieDate}</h4>
             </Row>
-            <Row>
-                <a href={props.movieUrl} target="_blanck"><button>Voir</button></a> 
+            <Row style={{marginTop:"20px"}}>
+                <Col span={24} style={{display: "flex", justifyContent: "center"}}>
+                    <a href={props.movieUrl} target="_blanck" data-sm-link-text={nomBtn} className="btn effect04"><span>Voir la fiche</span></a> 
+                </Col>
             </Row>
             
         </Col> 
