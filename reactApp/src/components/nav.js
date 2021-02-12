@@ -16,7 +16,12 @@ function nav() {
         <Animated animationIn="fadeInDown">
           <ul className="menu-bar">
             <Animated animationIn="bounceInDown">
-              <Link to="/"><li>Films</li> </Link>
+              <Link to="/">
+                <li>Films
+                  
+                </li> 
+              </Link>
+              
             </Animated>
             <Animated animationIn="bounceInDown">
               <Link to="/popular-tv"><li>Séries</li> </Link>

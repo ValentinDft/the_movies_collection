@@ -28,24 +28,27 @@ function cardMovie(props) {
     return(
          
         <Col xs={18} md={11} lg={10} xl={7} className="card-portfolio">
-            <img src={props.movieImg} style={{width: "100%" ,borderRadius: "10px"}}></img>
+            <img src={props.movieImg} style={{width: "100%" ,borderRadius: "10px"}} className="img-movies"></img>
             <h2 className="ruban-title">{props.movieName}</h2>
-            <h3 style={{fontSize: "15px", marginTop: "20px", textAlign: "justify", marginBottom: "50px", height: "100px"}}>
-                {props.movieDesc}
-            </h3>
-            <Row>
-                <Col span={24}>
-                    <h4>{tabStars} ({nbVote})</h4>
-                </Col>
-                <Col span={24} style={{marginTop: "10px"}}>
-                    <h4>Date de sortie : {props.movieDate}</h4>
-                </Col>
-            </Row>
-            <Row style={{marginTop:"20px"}}>
-                <Col span={24} style={{display: "flex", justifyContent: "center"}}>
-                    <a href={props.movieUrl} target="_blanck" data-sm-link-text={nomBtn} className="btn effect04"><span>Voir la fiche</span></a> 
-                </Col>
-            </Row>
+            <div style={{padding: "10px 25px"}}>
+                <h3 style={{fontSize: "15px", marginTop: "20px", textAlign: "justify", marginBottom: "50px", height: "100px", color: "white"}}>
+                    {props.movieDesc}
+                </h3>
+                <Row>
+                    <Col span={24}>
+                        <h4 style={{color: "white"}}>{tabStars} ({nbVote})</h4>
+                    </Col>
+                    <Col span={24} style={{marginTop: "10px"}}>
+                        <h4 style={{color: "white"}}>Date de sortie : {props.movieDate}</h4>
+                    </Col>
+                </Row>
+                <Row style={{marginTop:"20px"}}>
+                    <Col span={24} style={{display: "flex", justifyContent: "center"}}>
+                        <a href={props.movieUrl} target="_blanck" data-sm-link-text={nomBtn} className="btn effect04"><span>Voir la fiche</span></a> 
+                    </Col>
+                </Row>
+            </div>
+            
             
         </Col> 
     )
