@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/movies', function(req, res, next) {
-  let requete = request("GET", "https://api.themoviedb.org/3/movie/popular?api_key=" + KEY_MOVIEDB + "&language=fr&sort_by=popularity.desc");
-  let resultatRequete = JSON.parse(requete.getBody());
+  let requetePopulaire = request("GET", "https://api.themoviedb.org/3/movie/popular?api_key=" + KEY_MOVIEDB + "&language=fr&sort_by=popularity.desc");
+  let resultatRequetePopulaire = JSON.parse(requetePopulaire.getBody());
  
-  res.json( { resultatRequete });
+  res.json( { resultatRequetePopulaire });
 });
 
 router.get('/popular-tv', function(req, res, next) {

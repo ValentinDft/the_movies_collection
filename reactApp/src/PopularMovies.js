@@ -20,7 +20,7 @@ function PopularMovies(props) {
       console.log(requete);
       let response = await requete.json();
       console.log(response);
-      setMovieData(response.resultatRequete.results);
+      setMovieData(response.resultatRequetePopulaire.results);
     }
     loadMovies()
   }, []);
