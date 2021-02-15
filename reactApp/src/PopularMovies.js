@@ -4,7 +4,7 @@ import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
 import './App.css';
-import { Col, Row, Carousel } from 'antd';
+import { Col, Row, Carousel, Pagination  } from 'antd';
 import {Animated} from "react-animated-css";
 
 function PopularMovies(props) {
@@ -12,7 +12,11 @@ function PopularMovies(props) {
   const [onPageMovie, setOnPageMovie] = useState(true);
   const [onPageSerie, setOnPageSerie] = useState(false);
   const [movieData, setMovieData] = useState([]);
-
+  const [statePagination, setStagePagination] = useState(1);
+  const [pageB, setPageB] = useState({
+		minValue: 0,
+		maxValue: 10,
+	});
   useEffect( () => {
     
     async function loadMovies() {
@@ -52,6 +56,22 @@ function PopularMovies(props) {
     )
   })
 
+  let onChange = page => {
+    console.log("jhgf",page);
+    setStagePagination(page);
+		if (page <= 1) {
+			setPageB({
+				minValue: 0,
+				maxValue: 10,
+			});
+		} else {
+			setPageB({
+				minValue: (page - 1) * 10,
+				maxValue: page * 10,
+			});
+		}
+  };
+
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
@@ -70,6 +90,11 @@ function PopularMovies(props) {
       </Row>
       <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"5%", display: "flex", justifyContent: "space-between"}}>
         {movieList}
+      </Row>
+      <Row>
+        <Col span={24} style={{display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "40px"}}>
+          <Pagination current={statePagination} onChange={onChange} total={30} />
+        </Col>
       </Row>
     </div>
   );
