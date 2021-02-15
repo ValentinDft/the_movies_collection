@@ -6,6 +6,8 @@ import CarouselMovie from './components/Carousel';
 import './App.css';
 import { Col, Row, Carousel, Pagination  } from 'antd';
 import {Animated} from "react-animated-css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function PopularMovies(props) {
   
@@ -20,10 +22,8 @@ function PopularMovies(props) {
   useEffect( () => {
     
     async function loadMovies() {
-      let requete = await fetch("/movies");
-      console.log(requete);
+      let requete = await fetch(`/movies/:${1}`);
       let response = await requete.json();
-      console.log(response);
       setMovieData(response.resultatRequetePopulaire.results);
     }
     loadMovies()
@@ -57,7 +57,7 @@ function PopularMovies(props) {
   })
 
   let onChange = page => {
-    console.log("jhgf",page);
+    window.scrollTo(0, 620);
     setStagePagination(page);
 		if (page <= 1) {
 			setPageB({
@@ -70,6 +70,12 @@ function PopularMovies(props) {
 				maxValue: page * 10,
 			});
 		}
+    async function loadMovies() {
+      let requete = await fetch(`/movies/${page}`);
+      let response = await requete.json();
+      setMovieData(response.resultatRequetePopulaire.results);
+    }
+    loadMovies();
   };
 
   return (
@@ -92,8 +98,10 @@ function PopularMovies(props) {
         {movieList}
       </Row>
       <Row>
-        <Col span={24} style={{display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "40px"}}>
-          <Pagination current={statePagination} onChange={onChange} total={30} />
+        <Col span={24} style={{display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "100px"}}>
+          <div data-aos="fade-down">  
+            <Pagination current={statePagination} onChange={onChange} total={30} />
+          </div>
         </Col>
       </Row>
     </div>

@@ -11,7 +11,6 @@ function cardMovie(props) {
     if (nomBtn.length > 15) {
         nomBtn = nomBtn.slice(0,15)+"...";
     }
-    console.log(nomBtn.length);
     for(var i=0;i<10;i++){
      
         var color = {}

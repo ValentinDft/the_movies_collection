@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/movies', function(req, res, next) {
-  let requetePopulaire = request("GET", "https://api.themoviedb.org/3/movie/popular?api_key=" + KEY_MOVIEDB + "&language=fr&sort_by=popularity.desc");
+router.get('/movies/:page', function(req, res, next) {
+  let pageNum = req.params.page;
+  let requetePopulaire = request("GET", "https://api.themoviedb.org/3/movie/popular?api_key=" + KEY_MOVIEDB + "&language=fr&sort_by=popularity.desc&page=" + pageNum);
   let resultatRequetePopulaire = JSON.parse(requetePopulaire.getBody());
- 
   res.json( { resultatRequetePopulaire });
 });
 
