@@ -17,9 +17,9 @@ router.get('/movies/:page', function(req, res, next) {
   res.json( { resultatRequetePopulaire });
 });
 
-router.get('/popular-tv', function(req, res, next) {
-  
-  let requete = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr");
+router.get('/popular-tv/:page', function(req, res, next) {
+  let pageNum = req.params.page;
+  let requete = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr&page=" + pageNum);
   let resultatRequete = JSON.parse(requete.getBody());
  
   res.json( { resultatRequete });
