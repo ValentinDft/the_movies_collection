@@ -22,7 +22,7 @@ function PopularMovies(props) {
   useEffect( () => {
     
     async function loadMovies() {
-      let requete = await fetch(`/movies/:${1}`);
+      let requete = await fetch(`/movies/${1}`);
       let response = await requete.json();
       setMovieData(response.resultatRequetePopulaire.results);
     }

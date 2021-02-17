@@ -4,7 +4,7 @@ import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
 import './App.css';
-import { Col, Row, Carousel } from 'antd';
+import { Col, Row, Carousel, Pagination } from 'antd';
 import {Animated} from "react-animated-css";
 
 function PopularTV(props) {
@@ -12,6 +12,11 @@ function PopularTV(props) {
   const [onPageMovie, setOnPageMovie] = useState(props.pageMovie);
   const [onPageSerie, setOnPageSerie] = useState(props.pageSerie);
   const [serieData, setSerieDate] = useState([]);
+  const [statePagination, setStagePagination] = useState(1);
+  const [pageB, setPageB] = useState({
+		minValue: 0,
+		maxValue: 10,
+	});
 
   if (onPageMovie) {
     setOnPageMovie(false);
@@ -25,14 +30,13 @@ function PopularTV(props) {
 
   useEffect( () => {
     
-    async function loadMovies() {
-      let requete = await fetch("/popular-tv");
+    async function loadSeries() {
+      let requete = await fetch(`/popular-tv/${1}`);
       let response = await requete.json();
       setSerieDate(response.resultatRequete.results);
     }
-    loadMovies()
+    loadSeries()
   }, []);
-  console.log(serieData);
 
   let serieCarousel = [...serieData];
 
@@ -58,8 +62,29 @@ function PopularTV(props) {
       <CarouselMovie movieName={movie.name} movieImg={backgroundImgCarousel}/>
     )
   })
-  console.log("onMovie tv",onPageMovie);
-  console.log("onSerie tv", onPageSerie);
+  
+  let onChange = page => {
+    window.scrollTo(0, 620);
+    setStagePagination(page);
+		if (page <= 1) {
+			setPageB({
+				minValue: 0,
+				maxValue: 10,
+			});
+		} else {
+			setPageB({
+				minValue: (page - 1) * 10,
+				maxValue: page * 10,
+			});
+		}
+    async function loadSeries() {
+      let requete = await fetch(`/popular-tv/${page}`);
+      let response = await requete.json();
+      setSerieDate(response.resultatRequete.results);
+    }
+    loadSeries();
+  };
+
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
@@ -77,6 +102,13 @@ function PopularTV(props) {
       </Row>
       <Row style={{marginLeft: "5%", marginRight: "5%", marginTop:"5%", display: "flex", justifyContent: "space-between"}}>
         {serieList}
+      </Row>
+      <Row>
+        <Col span={24} style={{display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "100px"}}>
+          <div data-aos="fade-down">  
+            <Pagination current={statePagination} onChange={onChange} total={30} />
+          </div>
+        </Col>
       </Row>
     </div>
   );
