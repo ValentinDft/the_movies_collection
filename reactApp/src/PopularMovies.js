@@ -14,6 +14,9 @@ function PopularMovies(props) {
   const [onPageMovie, setOnPageMovie] = useState(true);
   const [onPageSerie, setOnPageSerie] = useState(false);
   const [movieData, setMovieData] = useState([]);
+  const [movieDataPage1, setmovieDataPage1] = useState([]);
+  const [movieDataPage2, setmovieDataPage2] = useState([]);
+  const [movieDataPage3, setmovieDataPage3] = useState([]);
   const [statePagination, setStagePagination] = useState(1);
   const [pageB, setPageB] = useState({
 		minValue: 0,
@@ -22,16 +25,21 @@ function PopularMovies(props) {
   useEffect( () => {
     
     async function loadMovies() {
-      let requete = await fetch(`/movies/${1}`);
+      let requete = await fetch(`/movies`);
       let response = await requete.json();
-      setMovieData(response.resultatRequetePopulaire.results);
+      setMovieData(response[0].page1);
+      setmovieDataPage1(response[0].page1);
+      setmovieDataPage2(response[1].page2);
+      setmovieDataPage3(response[2].page3);
     }
     loadMovies()
   }, []);
+  
   props.onMovie(onPageMovie)
   props.onSerie(onPageSerie)
   let movieCarousel = [...movieData];
-
+  console.log("moviedata", movieData);
+  
   let movieList = movieData.map((movie, i) => {
     let urlImage = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path
     let desc = movie.overview;
@@ -46,7 +54,7 @@ function PopularMovies(props) {
       <CardMovie movieName={movie.title} movieDesc={desc} movieDate={movie.release_date} movieNote={movie.vote_average} movieVote={movie.vote_count} movieImg={urlImage} movieId={movie.id} movieUrl={urlMovieDB}/>
     )
   })
-
+  
   movieCarousel.splice(5, 16);
 
   let movieListCarousel = movieCarousel.map((movie, i) => {
@@ -70,12 +78,13 @@ function PopularMovies(props) {
 				maxValue: page * 10,
 			});
 		}
-    async function loadMovies() {
-      let requete = await fetch(`/movies/${page}`);
-      let response = await requete.json();
-      setMovieData(response.resultatRequetePopulaire.results);
+    if (page == 1) {
+      setMovieData([...movieDataPage1])
+    } else if (page == 2) {
+      setMovieData([...movieDataPage2])
+    } else if (page == 3) {
+      setMovieData([...movieDataPage3])
     }
-    loadMovies();
   };
 
   return (
