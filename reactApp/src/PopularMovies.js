@@ -38,7 +38,6 @@ function PopularMovies(props) {
   props.onMovie(onPageMovie)
   props.onSerie(onPageSerie)
   let movieCarousel = [...movieData];
-  console.log("moviedata", movieData);
   
   let movieList = movieData.map((movie, i) => {
     let urlImage = 'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path

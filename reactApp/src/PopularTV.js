@@ -12,6 +12,9 @@ function PopularTV(props) {
   const [onPageMovie, setOnPageMovie] = useState(props.pageMovie);
   const [onPageSerie, setOnPageSerie] = useState(props.pageSerie);
   const [serieData, setSerieDate] = useState([]);
+  const [serieDataPage1, setSerieDatePage1] = useState([]);
+  const [serieDataPage2, setSerieDatePage2] = useState([]);
+  const [serieDataPage3, setSerieDatePage3] = useState([]);
   const [statePagination, setStagePagination] = useState(1);
   const [pageB, setPageB] = useState({
 		minValue: 0,
@@ -31,9 +34,12 @@ function PopularTV(props) {
   useEffect( () => {
     
     async function loadSeries() {
-      let requete = await fetch(`/popular-tv/${1}`);
+      let requete = await fetch(`/popular-tv`);
       let response = await requete.json();
-      setSerieDate(response.resultatRequete.results);
+      setSerieDate(response[0].page1);
+      setSerieDatePage1(response[0].page1);
+      setSerieDatePage2(response[1].page2);
+      setSerieDatePage3(response[2].page3);
     }
     loadSeries()
   }, []);
@@ -77,12 +83,13 @@ function PopularTV(props) {
 				maxValue: page * 10,
 			});
 		}
-    async function loadSeries() {
-      let requete = await fetch(`/popular-tv/${page}`);
-      let response = await requete.json();
-      setSerieDate(response.resultatRequete.results);
+    if (page == 1) {
+      setSerieDate([...serieDataPage1])
+    } else if (page == 2) {
+      setSerieDate([...serieDataPage2])
+    } else if (page == 3) {
+      setSerieDate([...serieDataPage3])
     }
-    loadSeries();
   };
 
   return (

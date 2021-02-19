@@ -24,12 +24,19 @@ router.get('/movies', function(req, res, next) {
   res.json( film );
 });
 
-router.get('/popular-tv/:page', function(req, res, next) {
-  let pageNum = req.params.page;
-  let requete = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr&page=" + pageNum);
-  let resultatRequete = JSON.parse(requete.getBody());
+router.get('/popular-tv', function(req, res, next) {
+  let requeteSeriePage1 = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr&page=1");
+  let resultatRequeteSeriePage1 = JSON.parse(requeteSeriePage1.getBody());
+
+  let requeteSeriePage2 = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr&page=2");
+  let resultatRequeteSeriePage2 = JSON.parse(requeteSeriePage2.getBody());
+
+  let requeteSeriePage3 = request("GET", "https://api.themoviedb.org/3/tv/popular?api_key=" + KEY_MOVIEDB + "&language=fr&page=3");
+  let resultatRequeteSeriePage3 = JSON.parse(requeteSeriePage3.getBody());
  
-  res.json( { resultatRequete });
+  let serie = [{page1 : resultatRequeteSeriePage1.results}, {page2 : resultatRequeteSeriePage2.results}, {page3 : resultatRequeteSeriePage3.results}]
+
+  res.json( serie );
 });
 
 module.exports = router;
