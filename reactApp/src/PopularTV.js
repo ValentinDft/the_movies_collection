@@ -4,7 +4,7 @@ import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
 import './App.css';
-import { Col, Row, Carousel, Pagination } from 'antd';
+import { Col, Row, Carousel, Pagination, Spin } from 'antd';
 import {Animated} from "react-animated-css";
 
 function PopularTV(props) {
@@ -21,6 +21,13 @@ function PopularTV(props) {
 		maxValue: 10,
 	});
 
+  // Spin
+  const [afficheSpiner, setAfficheSpiner] = useState(false);
+  let spiner;
+  if (afficheSpiner) {
+    spiner = <Spin size="large"/>
+  }
+
   if (onPageMovie) {
     setOnPageMovie(false);
     props.onMovie(onPageMovie);
@@ -32,7 +39,7 @@ function PopularTV(props) {
   }
 
   useEffect( () => {
-    
+    setAfficheSpiner(true);
     async function loadSeries() {
       let requete = await fetch(`/popular-tv`);
       let response = await requete.json();
@@ -40,6 +47,7 @@ function PopularTV(props) {
       setSerieDatePage1(response[0].page1);
       setSerieDatePage2(response[1].page2);
       setSerieDatePage3(response[2].page3);
+      setAfficheSpiner(false);
     }
     loadSeries()
   }, []);
@@ -96,6 +104,9 @@ function PopularTV(props) {
     <div style={{marginTop: "2%"}}>
       <Nav/>
       <Row style={{marginTop:"3%"}}>
+        <Col span={24} style={{display: "flex", justifyContent: "center"}}>
+          {spiner}
+        </Col>
         <Col span={24}>
           <Animated animationIn="slideInUp">
             <Carousel autoplay>

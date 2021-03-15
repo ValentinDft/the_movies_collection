@@ -22,11 +22,14 @@ function PopularMovies(props) {
 		minValue: 0,
 		maxValue: 10,
 	});
+
+  // Spin
   const [afficheSpiner, setAfficheSpiner] = useState(false);
   let spiner;
   if (afficheSpiner) {
     spiner = <Spin size="large"/>
   }
+  
   useEffect( () => {
     setAfficheSpiner(true);
     async function loadMovies() {
