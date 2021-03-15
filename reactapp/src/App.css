@@ -11,6 +11,10 @@ body{
 	background-size: cover;
 }
 
+.ant-spin-dot-item {
+  background-color: #55efc4;
+}
+
 .neons {
   font-size: 38px;
   font-weight: bold;
