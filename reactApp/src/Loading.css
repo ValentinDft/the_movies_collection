@@ -1,0 +1,18 @@
+.load{
+    background-image: url(img/loadBG.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.yes{
+    font-size: 150px;
+    text-align: center;
+    padding-top: 30px;
+    color: white;
+    mix-blend-mode: overlay;
+    text-decoration: overline;
+    text-transform: uppercase;
+    -webkit-text-stroke: 3px red;
+    cursor: default;
+}

@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import PopularMovies from './PopularMovies';
 import PopularTV from './PopularTV';
+import Loading from "./Loading"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
