@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import Loading from "./Loading"
 import {connect} from 'react-redux';
 import CardMovie from './components/cardMovie';
 import Nav from './components/nav';
 import CarouselMovie from './components/Carousel';
 import './App.css';
-import { Col, Row, Carousel, Pagination, Spin   } from 'antd';
+import { Col, Row, Carousel, Pagination} from 'antd';
 import {Animated} from "react-animated-css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -22,16 +23,10 @@ function PopularMovies(props) {
 		minValue: 0,
 		maxValue: 10,
 	});
-
-  // Spin
-  const [afficheSpiner, setAfficheSpiner] = useState(false);
-  let spiner;
-  if (afficheSpiner) {
-    spiner = <Spin size="large"/>
-  }
+  const [loadPage, setLoadPage] = useState(false);
   
   useEffect( () => {
-    setAfficheSpiner(true);
+    setLoadPage(true);
     async function loadMovies() {
       let requete = await fetch(`/movies`);
       let response = await requete.json();
@@ -39,7 +34,7 @@ function PopularMovies(props) {
       setmovieDataPage1(response[0].page1);
       setmovieDataPage2(response[1].page2);
       setmovieDataPage3(response[2].page3);
-      setAfficheSpiner(false);
+      setLoadPage(false);
     }
     loadMovies()
   }, []);
@@ -95,14 +90,20 @@ function PopularMovies(props) {
     }
   };
 
+
+  if (loadPage) {
+    return(
+      
+        <Loading/>
+     
+    );
+  } else {
+
   return (
     <div style={{marginTop: "2%"}}>
       <Nav/>
       
       <Row style={{marginTop:"3%"}}>
-        <Col span={24} style={{display: "flex", justifyContent: "center"}}>
-          {spiner}
-        </Col>
         <Col span={24}>
           <Animated animationIn="slideInUp">
             <Carousel autoplay>
@@ -126,6 +127,7 @@ function PopularMovies(props) {
       </Row>
     </div>
   );
+  }
 }
 
 function mapStateToProps(state) {
